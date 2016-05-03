@@ -28,13 +28,16 @@ public class StockGrabber implements Observer{
 	
 	public void setIBMPrice(double newIBMPrice){
 		this.ibmPrice = newIBMPrice;
+		notifyObserver();
 	}
 	
 	public void setGoogPrice(double newGoogPrice){
 		this.googPrice = newGoogPrice;
+		notifyObserver();
 	}
 	
 	public void setAAPLPrice(double newAAPLPrice){
 		this.aaplPrice = newAAPLPrice;
+		notifyObserver();
 	}
 }
