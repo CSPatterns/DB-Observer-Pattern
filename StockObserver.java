@@ -10,6 +10,7 @@ public class Stockobserver implements Observer{
 
 	public StockObserver(Subject stockGrabber){
 		this.stockGrabber = stockGrabber;
+		stockGrabber.register(this);
 	}
 
 	public void update(double ibmPrice, double googPrice, double aaplPrice){
