@@ -3,13 +3,11 @@ public class GetTheStock impelements Runnable{
 	private Subject stockgrabber;
 	private String symbol;
 	private double price;
-	private double time;
 
 	public GetTheStock(Subject stockgrabber, int time, double price, String stockSymbol){
 		
 		this.stockgrabber = stockgrabber;
 		this.price = price;
-		this.time = time;
 		this.symbol = stockSymbol;
 		 
 	}
