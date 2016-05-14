@@ -42,16 +42,16 @@ public class GetTheStock impelements Runnable{
 			//if price is IBM
 			
 			if(symbol == "IBM"){
-				stockgrabber.setIBMPrice(df(price + random));
+				((StockGrabber)stockgrabber).setIBMPrice(price);
 			}
 			
 			if(symbol == "GOOG"){
-				stockgrabber.setGOOGPrice(df(price + random));
+				((StockGrabber)stockgrabber).setGOOGPrice(price);
 			}
 			
 			
 			if(symbol == "AAPL"){
-				stockgrabber.setAAPLPrice(df(price + random));
+				((StockGrabber)stockgrabber).setAAPLPrice(price));
 			}
 			
 		}
