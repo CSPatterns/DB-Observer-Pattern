@@ -30,7 +30,11 @@ public class GetTheStock impelements Runnable{
 			
 			
 			//generate random numbers between 0.6 and -0.3
-			double random = Math.random() * 0.6 - 0.3;
+			double random = (Math.random() * 0.6) - 0.3;
+			
+			//change the price
+			
+			price = Double.valueOf(df.format((price + randNum)));
 			
 			
 			
