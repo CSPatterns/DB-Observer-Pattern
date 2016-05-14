@@ -15,8 +15,16 @@ public class GetTheStock impelements Runnable{
 	
 	public void run(){
 		
-		for (int i - 0; i < 20; i++){
+		for (int i = 0; i < 20; i++){
 			
+			try{
+				
+				//sleep for 2 seconds
+				Thread.sleep(2000);
+				
+			}catch(InterruptedException e){
+				
+			}
 			// get new Decimal Format
 			DecimalFormat df = new DecimalFormat("#.###");
 			
