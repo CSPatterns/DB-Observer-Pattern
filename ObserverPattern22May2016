@@ -1,0 +1,161 @@
+public interface Subject{
+	public void register(Observer o);
+	public void unRegister(Observer o);
+	public void notifyObserver();
+
+
+}
+
+public interface Observer{
+	public void update(double ibmPrice, double googPrice, double aaplPrice);
+}
+
+public class StockGrabber implements Subject{
+	private ArrayList<Observer> observers;
+	private double ibmPrice;
+	private double googPrice;
+	private double aaplPrice;
+    
+    public StockGrabber(){
+
+    	observers = new ArrayList<Observer>();
+    }
+
+    public void register(Observer newObserver){
+    	observers.add(newObserver);
+
+    }
+
+    public void unRegister(Observer deleteObserver){
+    	int observerID = observers.indexOf(deleteObserver);
+    	observers.remove(observerID);
+
+    }
+
+    public void notifyObserver(){
+    	for(Observer o: observers){
+    		o.update(ibmPrice, googPrice, aaplPrice);
+    	}
+    }
+
+    public void setIBMPrice(double newIBMPrice){
+    	this.ibmPrice = newIBMPrice;
+    }
+
+    public void setGOOGPrice(double newGOOGPrice){
+    	this.googPrice = newGOOGPrice;
+    }
+
+    public void setAAPLPrice(double newAAPLPrice){
+    	this.aaplPrice = newAAPLPrice;
+    }
+	
+}
+
+
+public StockObserver implements Observer{
+	
+	private double ibmPrice;
+	private double googPrice;
+	private double aaplPrice;
+
+	private int observerID;
+
+	private static int observerIDTracker 0;
+
+	private Subject stockGrabber;
+
+	public StockObserver(Subject stockGrabber){
+		this.stockGrabber = stockGrabber;
+
+		observerID = ++observerIDTracker;
+		System.out.println("Register New Observer:" + observerID);
+
+		stockGrabber.register(this);
+	}
+
+	public void update(double ibmPrice, double googPrice, double aaplPrice){
+
+	   this.ibmPrice = ibmPrice;
+	   this.googPrice = googPrice;
+	   this.aaplPrice = aaplPrice;
+
+	   printThePrices();
+	}
+
+
+	public void printThePrices(){
+		System.out.println("Prices for Observer:" +  observerID + "\nIBM: " + ibmPrice
+							+ "\GOOG:" + googPrice
+							+ "\AAPL:" + aaplPrice);
+	}
+}
+
+
+public class GrabStock{
+	
+	public static void main(String []args){
+
+	StockGrabber s1 = new StockGrabber():
+	StockObserver obs1 = new StockObserver(s1);
+
+	s1.setIBMPrice(100.00);
+	s1.setGOOGPrice(200.00);
+	s1.setAAPLPrice(300.00);
+
+	}
+}
+
+
+
+
+//Part 2 - Multi Threading
+public class GetTheStock implements Runnable{
+	private String stockSymbol;
+	private int time;
+	private double price;
+	private Subject stockGrabber;
+
+	public GetTheStock(String stockSymbol, Subject stockGrabber, int time, double price){
+		this.stockGrabber = stockGrabber;
+		this.stockSymbol = stockSymbol;
+		this.price = price;
+	}
+
+	public void run(){
+
+		for(int i = 0; i <20; i++){
+
+			try{
+
+					Thread.sleep(2000);
+
+			}catch(InterruptedException ie){
+					//left blank intentionally
+			}
+
+			DecimalFormat df = new DecimalFormat(#.##);
+
+			double randomNum = (Math.random() * 0.6) - 0.3;
+
+			price = df.valueOf(price + randomNum);
+
+			if(stockSymbo.equals("IBM")){
+				(StockGrabber)stockGrabber.setIBMPrice(price);
+			}
+
+			if(stockSymbo.equals("GOOG")){
+				(StockGrabber)stockGrabber.setGOOGPrice(price);
+			}
+
+			if(stockSymbo.equals("AAPL")){
+				(StockGrabber)stockGrabber.setAAPLPrice(price);
+			}
+
+
+		}
+
+
+	}
+
+}
